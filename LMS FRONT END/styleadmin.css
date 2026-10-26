@@ -1,0 +1,274 @@
+/* admin.css
+   Load AFTER stylebooks.css. It reuses the page background, header, logo,
+   sidebar menu and fonts from there, and only adds what the admin page needs. */
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.admin-layout {
+    width: 70%;
+    margin: 0 auto 2rem;
+    display: grid;
+    gap: 1.5rem;
+}
+
+.members-layout {
+    width: 85%;
+}
+
+/* Same look as .books on the user page */
+.panel {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px #4CDBFF;
+    color: #4CDBFF;
+    font-size: 1rem;
+}
+
+#members {
+    width: min(100%, 1400px);
+    justify-self: center;
+    box-sizing: border-box;
+}
+
+.panel h2 {
+    margin: 0 0 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    text-shadow: 0 0 5px #4CDBFF;
+}
+
+/* Underline inputs, same style as the search bar */
+.panel input[type="text"],
+.panel input[type="search"],
+.panel input[type="email"] {
+    width: 100%;
+    padding: 0.5rem 0;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #444;
+    outline: none;
+    color: #fff;
+    font: 1rem 'Poppins', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.panel input::placeholder {
+    color: #aaa;
+}
+
+.panel input:focus {
+    border-bottom-color: #4CDBFF;
+}
+
+.panel .searchbar {
+    width: 100%;
+    margin: 0 0 1rem;
+}
+
+/* Add-book form */
+.add-form {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr auto;
+    gap: 1rem;
+    align-items: end;
+}
+
+/* Buttons: same outline style as the nav links */
+.panel button,
+.logout-link {
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1px solid #4CDBFF;
+    border-radius: 15px;
+    color: #4CDBFF;
+    font: 0.9rem 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.panel button:hover,
+.panel button:focus-visible {
+    background-color: #4CDBFF;
+    border-color: #fff;
+    color: #000;
+    box-shadow: 0 0 8px #fff, 0 0 16px rgba(255, 255, 255, 0.7);
+    outline: none;
+}
+
+.panel button.danger {
+    border-color: #ff5c6c;
+    color: #ff5c6c;
+}
+
+.panel button.danger:hover,
+.panel button.danger:focus-visible {
+    background-color: #ff5c6c;
+    border-color: #fff;
+    color: #000;
+    box-shadow: 0 0 8px #fff, 0 0 16px rgba(255, 92, 108, 0.7);
+}
+
+.book-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.panel button:disabled,
+.panel button:disabled:hover {
+    background: transparent;
+    border-color: #666;
+    color: #888;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Tables */
+.table-wrap {
+    overflow-x: auto;
+}
+
+.panel table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.panel th,
+.panel td {
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(76, 219, 255, 0.25);
+}
+
+.panel td {
+    color: #fff;
+}
+
+.member-list-description {
+    margin: -0.25rem 0 1rem;
+    color: #ddd;
+}
+
+.member-table {
+    width: max-content;
+    min-width: 1050px;
+    margin-inline: auto;
+}
+
+.member-table th,
+.member-table td {
+    vertical-align: top;
+}
+
+.member-table td:nth-child(1) {
+    min-width: 9rem;
+}
+
+.member-table td:nth-child(2),
+.member-table td:nth-child(3) {
+    min-width: 11rem;
+}
+
+.member-table td:nth-child(4),
+.member-table td:nth-child(5) {
+    min-width: 17rem;
+}
+
+.member-table td:last-child {
+    min-width: 6rem;
+    white-space: nowrap;
+}
+
+.book-history {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.book-history li {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.book-history span {
+    color: #c7c7c7;
+    font-size: 0.875rem;
+}
+
+.member-preview-note {
+    margin: 1rem 0 0;
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.member-no-results {
+    margin-top: 1rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.panel th:last-child,
+.panel td:last-child {
+    text-align: right;
+}
+
+/* Status label */
+.status {
+    display: inline-block;
+    padding: 0.1rem 0.7rem;
+    border: 1px solid currentColor;
+    border-radius: 15px;
+    font-size: 0.85rem;
+}
+
+.status.available { color: #5dffa0; }
+.status.borrowed  { color: #ffc857; }
+
+/* Messages */
+.notice {
+    margin: 0;
+    padding: 0.7rem 1rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid #4CDBFF;
+    border-radius: 10px;
+    color: #4CDBFF;
+}
+
+.empty {
+    margin: 0;
+    color: #aaa;
+}
+
+footer {
+    padding: 1.5rem 1rem;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+/* Tablets and phones */
+@media (max-width: 850px) {
+    .admin-layout {
+        width: 92%;
+    }
+
+    .add-form {
+        grid-template-columns: 1fr;
+    }
+}

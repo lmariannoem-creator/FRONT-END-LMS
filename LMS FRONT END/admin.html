@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLARE LIBRARY - Admin</title>
+    <link rel="stylesheet" href="stylebooks.css">
+    <link rel="stylesheet" href="styleadmin.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/clarelibrarylogo-removebg-preview.png" alt="Clare Library Logo">
+        </div>
+        <div class="header-text">
+            <h1>CLARE LIBRARY</h1>
+            <h4>Admin Panel</h4>
+        </div>
+        <div>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar-nav">☰</button>
+            <nav id="sidebar-nav" aria-label="Main Navigation">
+                <button class="nav-close" aria-label="Close menu">✕</button>
+                <ul>
+                    <li><a href="#books">Books</a></li>
+                    <li><a href="viewmem.html">Members</a></li>
+                    <li><a href="login.html">Log out</a></li>
+                    <li class="profile-item">
+                        <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 21a8 8 0 0 1 16 0"></path>
+                        </svg>
+                        <span id="user-name">Admin</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="nav-overlay"></div>
+
+    <main class="admin-layout">
+
+        <p class="notice" id="notice" role="status" hidden></p>
+
+        <!-- ADD BOOK -->
+        <section class="panel" id="add-book">
+            <h2>Add a book</h2>
+            <form class="add-form" id="add-book-form">
+                <input type="text" name="isbn"   placeholder="ISBN"   aria-label="ISBN"   required>
+                <input type="text" name="title"  placeholder="Title"  aria-label="Title"  required>
+                <input type="text" name="author" placeholder="Author" aria-label="Author" required>
+                <button type="submit">Add book</button>
+            </form>
+        </section>
+
+        <!-- BOOK LIST -->
+        <section class="panel" id="books">
+            <h2>Books (<span id="book-count">3</span>)</h2>
+            <div class="searchbar">
+                <input type="search" data-filter="book-rows" placeholder="Search books..." aria-label="Search books">
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr><th>ISBN</th><th>TITLE</th><th>AUTHOR</th><th>STATUS</th><th></th></tr>
+                    </thead>
+                    <tbody id="book-rows">
+                        <tr>
+                            <td>978-971-0000-01</td>
+                            <td>Noli Me Tangere</td>
+                            <td>José Rizal</td>
+                            <td><span class="status available">Available</span></td>
+                            <td><button type="button" class="danger" data-delete="book">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>978-971-0000-02</td>
+                            <td>El Filibusterismo</td>
+                            <td>José Rizal</td>
+                            <td><span class="status borrowed">Borrowed</span></td>
+                            <td><button type="button" class="danger" data-delete="book">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>978-971-0000-03</td>
+                            <td>Florante at Laura</td>
+                            <td>Francisco Balagtas</td>
+                            <td><span class="status borrowed">Borrowed</span></td>
+                            <td><button type="button" class="danger" data-delete="book">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 CLARE LIBRARY — All Rights Reserved</footer>
+
+    <!-- Sidebar menu (same as books.html) -->
+    <script>
+        const toggle   = document.querySelector('.nav-toggle');
+        const closeBtn = document.querySelector('.nav-close');
+        const nav      = document.querySelector('header nav');
+        const overlay  = document.querySelector('.nav-overlay');
+        const navLinks = nav.querySelectorAll('a');
+
+        function updateActiveLink() {
+            const currentHash = window.location.hash || '#books';
+            navLinks.forEach(link => {
+                const isActive = link.hash === currentHash;
+                link.classList.toggle('active', isActive);
+                if (isActive) link.setAttribute('aria-current', 'page');
+                else link.removeAttribute('aria-current');
+            });
+        }
+        updateActiveLink();
+        window.addEventListener('hashchange', updateActiveLink);
+
+        function openMenu() {
+            nav.classList.add('open');
+            overlay.classList.add('show');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            nav.classList.remove('open');
+            overlay.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        toggle.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+        window.addEventListener('resize', () => { if (window.innerWidth > 480) closeMenu(); });
+    </script>
+
+    <!-- PREVIEW ONLY: makes the buttons and search work on screen without a back end.
+         Nothing is saved; refresh and it resets.
+         Delete this whole script once you have your PHP/database. -->
+    <script>
+        const notice = document.getElementById("notice");
+
+        function say(text) {
+            notice.textContent = text;
+            notice.hidden = false;
+        }
+
+        function updateCounts() {
+            document.getElementById("book-count").textContent =
+                document.querySelectorAll("#book-rows tr").length;
+            document.getElementById("member-count").textContent =
+                document.querySelectorAll("#member-rows tr").length;
+        }
+
+        // Delete a book or member
+        document.addEventListener("click", function (e) {
+            const btn = e.target.closest("[data-delete]");
+            if (!btn) return;
+            const kind = btn.dataset.delete;
+            if (!confirm("Delete this " + kind + "?")) return;
+            btn.closest("tr").remove();
+            updateCounts();
+            say(kind === "book" ? "Book deleted." : "Member deleted.");
+        });
+
+        // Add a book
+        document.getElementById("add-book-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const f = new FormData(e.target);
+            const tr = document.createElement("tr");
+
+            ["isbn", "title", "author"].forEach(function (key) {
+                const td = document.createElement("td");
+                td.textContent = f.get(key);
+                tr.appendChild(td);
+            });
+
+            const statusTd = document.createElement("td");
+            statusTd.innerHTML = '<span class="status available">Available</span>';
+            tr.appendChild(statusTd);
+
+            const actionTd = document.createElement("td");
+            actionTd.innerHTML = '<button type="button" class="danger" data-delete="book">Delete</button>';
+            tr.appendChild(actionTd);
+
+            document.getElementById("book-rows").appendChild(tr);
+            e.target.reset();
+            updateCounts();
+            say("Book added.");
+        });
+
+        // Search boxes filter the rows of their table
+        document.querySelectorAll("[data-filter]").forEach(function (input) {
+            input.addEventListener("input", function () {
+                const q = input.value.toLowerCase();
+                document.querySelectorAll("#" + input.dataset.filter + " tr").forEach(function (row) {
+                    row.hidden = !row.textContent.toLowerCase().includes(q);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

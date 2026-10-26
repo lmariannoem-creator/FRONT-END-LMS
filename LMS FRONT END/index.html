@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLARE LIBRARY</title>
+    <link rel="stylesheet" href="stylehome.css">
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <img src="img/clarelibrarylogo-removebg-preview.png" alt="Clare Library Logo">
+    </div>
+    <div class="header-text">
+        <h1>CLARE LIBRARY</h1>
+        <h4>Cataloging Library Assets, Records, and Entries</h4>
+    </div>
+    <div>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar-nav">☰</button>
+        <nav id="sidebar-nav" aria-label="Main Navigation">
+            <button class="nav-close" aria-label="Close menu">✕</button>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="policies.html">Policies</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="login.html">Log out</a></li>
+                <li class="profile-item">
+                    <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span id="user-name">User</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="nav-overlay"></div>
+
+   <script>
+    const toggle  = document.querySelector('.nav-toggle');
+    const closeBtn = document.querySelector('.nav-close');
+    const nav     = document.querySelector('header nav');
+    const overlay = document.querySelector('.nav-overlay');
+    const navLinks = nav.querySelectorAll('a');
+
+    function updateActiveLink() {
+        const currentHash = window.location.hash || '#home';
+
+        navLinks.forEach(link => {
+            const isActive = link.hash === currentHash;
+            link.classList.toggle('active', isActive);
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    updateActiveLink();
+    window.addEventListener('hashchange', updateActiveLink);
+
+    function openMenu() {
+        nav.classList.add('open');
+        overlay.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';   // stop page scrolling behind the menu
+    }
+
+    function closeMenu() {
+        nav.classList.remove('open');
+        overlay.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // close when a link is tapped
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // close with the Escape key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // if the window is resized to desktop size, reset everything
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 480) closeMenu();
+    });
+</script>
+<div class="carousel">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqdcsl5k_pntWWLirJRlSzGSq02Un4D0yc0RzvPNkt3Jokffl0Gn8xn8&s=10" alt="LMS>">
+    <img src="https://ecartes.in/wp-content/uploads/2026/05/RFID-Library-Management-System-India-2026-for-Automated-Library-Operations.jpg" alt="LMS2">
+    <img src="https://www.suresolutions.in/wp-content/uploads/2025/06/rfid-library-management-system.webp" alt="LMS3">
+    <img src="https://cdn.sanity.io/images/4xkwtk5k/production/bcb42e35ab556e13fa31d1865ee9ef826949e4e7-2752x1536.png?auto=format&fit=max&w=2880&q=80" alt="LMS4">
+    <img src="https://i0.wp.com/simplelittlelibrarysystem.co.uk/wp-content/uploads/2025/01/SLLS-BLOG-Picture-What-is-OPAC-02-e1761732173939.png?resize=600%2C394&ssl=1" alt="LMS5">
+    <img src="https://www.cykeorfid.com/wp-content/uploads/2025/09/Modern-library-with-RFID-tags-300x200.jpg" alt="LMS6">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkqdcsl5k_pntWWLirJRlSzGSq02Un4D0yc0RzvPNkt3Jokffl0Gn8xn8&s=10" alt="LMS>">
+    <img src="https://ecartes.in/wp-content/uploads/2026/05/RFID-Library-Management-System-India-2026-for-Automated-Library-Operations.jpg" alt="LMS2">
+    <img src="https://www.suresolutions.in/wp-content/uploads/2025/06/rfid-library-management-system.webp" alt="LMS3">
+    <img src="https://cdn.sanity.io/images/4xkwtk5k/production/bcb42e35ab556e13fa31d1865ee9ef826949e4e7-2752x1536.png?auto=format&fit=max&w=2880&q=80" alt="LMS4">
+    <img src="https://i0.wp.com/simplelittlelibrarysystem.co.uk/wp-content/uploads/2025/01/SLLS-BLOG-Picture-What-is-OPAC-02-e1761732173939.png?resize=600%2C394&ssl=1" alt="LMS5">
+    <img src="https://www.cykeorfid.com/wp-content/uploads/2025/09/Modern-library-with-RFID-tags-300x200.jpg" alt="LMS6">
+</div>
+<br>
+<br>
+
+<div class="about-sections">
+    <div class="how-itstarted">
+        <h2>How we started</h2>
+        <p>The Clare Library System was developed in October 2026 by five second-year Bachelor of Science in Computer Science students as an academic project for SDF104 – Object-Oriented Programming, under the supervision of their professor, Sir Mark Feliciano. The project aims to apply the students’ programming knowledge and technical skills in developing a functional and user-friendly Library Management System.
+The project was led by Marian Noem Lazaro, who was responsible for both front-end and back-end development. She was supported by Ashlei Nicole Trinidad and Robert Mendiola, who contributed to the back-end development and assisted in implementing the system’s functionality. Meanwhile, Viena Mae Indab served as the designer, responsible for conceptualizing the system’s visual presentation and user interface. Mahara Carrie Flores handled the documentation, recording the team’s progress, organizing essential project information, and documenting the development process.</p>
+<br>
+<p>Through collaboration, effective task distribution, and the combined efforts of all five members, the team successfully worked toward developing the Clare Library System. This project provided an opportunity to strengthen their understanding of object-oriented programming, enhance their technical and problem-solving skills, and gain practical experience in software development, teamwork, and project documentation.</p>
+    </div>
+<div class="about-column">
+    <div class="about-us">
+        <h2>About us</h2>
+        <p>Clare Library is a library management system built to make cataloging simple, organized, and accessible. Our name stands for Cataloging Library Assets, Records, and Entries, which sums up what we do: keep every book, record, and transaction in one place.</p>
+        <p>Whether you’re a student looking for your next read, a staff member managing the collection, or a librarian tracking borrowed and returned books, Clare Library helps you find, borrow, and return resources quickly and with less paperwork.</p>
+    </div>
+    <div class="mission-vision">
+        <h3>Our Mission</h3>
+        <p>To give every reader easy access to knowledge through a reliable, easy-to-use library system.</p>
+        <h3>Our Vision</h3>
+        <p>A community where finding and sharing books is simple, fast, and open to everyone.</p>
+    </div>
+</div>
+</div>
+
+</body>
+<br>
+<footer>&copy; 2026 CLARE LIBRARY — All Rights Reserved | Privacy Policy | Terms of Use</footer>
+</html>

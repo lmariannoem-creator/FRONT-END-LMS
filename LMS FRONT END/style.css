@@ -1,0 +1,260 @@
+html,
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #fff;
+    background-color: #05070d;
+    background-image:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.85) 0%,
+            rgba(0, 0, 0, 0.35) 40%,
+            rgba(0, 0, 0, 0.35) 70%,
+            rgba(0, 0, 0, 0.9) 100%),
+        linear-gradient(rgba(10, 60, 75, 0.45), rgba(10, 60, 75, 0.45)),
+        url('img/librarybackground.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    display: block;
+    width: clamp(5rem, 10vw, 10rem);
+    height: clamp(5rem, 10vw, 10rem);
+    object-fit: contain;
+}
+
+.welcome-title {
+    line-height: 1.1;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    color: #4CDBFF;
+}
+
+.welcome-subtitle {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2;
+    margin-top: 0.25rem;
+    font-size: clamp(0.95rem, 1.5vw, 1.25rem);
+    margin-left: 0.5rem;
+    color: #7b7c7c;
+}
+
+.welcome {
+    margin-left: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    line-height: normal;
+}
+
+.header-text h1{
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif;
+    text-shadow: 0 0 5px #4CDBFF;
+    color: #4CDBFF;
+}
+.header-text h4 {
+    margin: 0;
+    margin-top: 0.35rem;
+    font-family:'Times New Roman', Times, serif;
+    font-size: clamp(0.75rem, 1.4vw, 1rem);
+    text-shadow: 0 0 5px #4CDBFF;
+    color:#4CDBFF;
+}
+
+.login-layout {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: calc(100vh - 14rem);
+    width: 100%;
+    gap: 2rem;
+    padding: 0 5rem 0 5rem;
+    box-sizing: border-box;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: clamp(18rem, 36vw, 28rem);
+    max-width: 100%;
+    min-height: 37rem;
+    padding: 3rem 3.5rem;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    background-color: #000;
+    border-radius: 4rem;
+    box-shadow: 0 0 40px rgba(76, 219, 255, 0.35);
+}
+
+.login-container h1 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 0 2rem;
+    color: #4CDBFF;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Underline-only inputs */
+.login-container input {
+    width: 100%;
+    padding: 0.5rem 0;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #444;
+    color: #fff;
+    font-size: 1.15rem;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.login-container input::placeholder {
+    color: #aaa;
+}
+
+.login-container input:focus {
+    border-bottom-color: #4CDBFF;
+}
+
+/* Pill button */
+.login-container button {
+    width: 90%;
+    align-self: center;
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    background-color: #29B6DB;
+    color: #fff;
+    border: none;
+    border-radius: 999px;
+    transition: background-color 0.2s;
+}
+
+.login-container button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 999px;
+}
+
+.login-container button:hover {
+    background-color: #4CDBFF;
+}
+
+/* "Don't have an account yet? Sign up" */
+.signup-text {
+    margin: 1.5rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    text-align: center;
+    color: #ddd;
+}
+
+.signup-text a {
+    color: #4CDBFF;
+    text-decoration: none;
+}
+
+.signup-text a:hover {
+    text-decoration: underline;
+}
+
+/* Laptops / small desktops */
+@media (max-width: 1100px) {
+    .login-layout {
+        padding: 0 2rem;
+        gap: 1.5rem;
+    }
+}
+
+/* Tablets: stack the welcome text above the card */
+@media (max-width: 850px) {
+    .login-layout {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        min-height: auto;
+    }
+
+    .welcome-subtitle {
+        margin-left: 0;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 26rem;
+        min-height: auto;
+        border-radius: 3rem;
+    }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .login-layout {
+        padding: 1.5rem 1rem;
+    }
+
+    .login-container {
+        padding: 2rem 1.5rem;
+        border-radius: 2rem;
+    }
+
+    .login-container button {
+        width: 100%;
+    }
+
+    footer {
+        font-size: 0.75rem;
+        padding: 0.75rem;
+    }
+}
+
+footer{
+    color: #7b7c7c;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}

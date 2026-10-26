@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLARE LIBRARY - Members</title>
+    <link rel="stylesheet" href="stylebooks.css">
+    <link rel="stylesheet" href="styleadmin.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/clarelibrarylogo-removebg-preview.png" alt="Clare Library Logo">
+        </div>
+        <div class="header-text">
+            <h1>CLARE LIBRARY</h1>
+            <h4>Admin Panel</h4>
+        </div>
+        <div>
+            <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar-nav">☰</button>
+            <nav id="sidebar-nav" aria-label="Main Navigation">
+                <button class="nav-close" aria-label="Close menu">✕</button>
+                <ul>
+                    <li><a href="admin.html">Books</a></li>
+                    <li><a href="#members" aria-current="page">Members</a></li>
+                    <li><a href="login.html">Log out</a></li>
+                    <li class="profile-item">
+                        <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4"></circle>
+                            <path d="M4 21a8 8 0 0 1 16 0"></path>
+                        </svg>
+                        <span id="user-name">Admin</span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="nav-overlay"></div>
+
+    <main class="admin-layout members-layout">
+        <p class="notice" id="notice" role="status" hidden></p>
+
+        <section class="panel" id="members">
+            <h2>Members (<span id="member-count">3</span>)</h2>
+            <p class="member-list-description">Member contact details and borrowing history.</p>
+            <div class="searchbar">
+                <input type="search" id="member-search" placeholder="Search members or books..." aria-label="Search members or books">
+            </div>
+            <div class="table-wrap">
+                <table class="member-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">NAME</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">CONTACT NUMBER</th>
+                            <th scope="col">BORROWED BOOKS</th>
+                            <th scope="col">RETURNED BOOKS</th>
+                            <th scope="col"><span class="visually-hidden">ACTIONS</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="member-rows">
+                        <tr>
+                            <td>Maria Santos</td>
+                            <td>maria@example.com</td>
+                            <td>0917-123-4567</td>
+                            <td>
+                                <ul class="book-history">
+                                    <li><strong>Noli Me Tangere</strong><span>José Rizal · ISBN 978-971-0000-01 · Due: Oct 30, 2026</span></li>
+                                </ul>
+                            </td>
+                            <td>
+                                <ul class="book-history">
+                                    <li><strong>Florante at Laura</strong><span>Francisco Balagtas · ISBN 978-971-0000-03 · Returned: Oct 12, 2026</span></li>
+                                </ul>
+                            </td>
+                            <td><button type="button" class="danger" data-delete="member">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Juan Dela Cruz</td>
+                            <td>juan@example.com</td>
+                            <td>0918-234-5678</td>
+                            <td>
+                                <ul class="book-history">
+                                    <li><strong>El Filibusterismo</strong><span>José Rizal · ISBN 978-971-0000-02 · Due: Nov 2, 2026</span></li>
+                                    <li><strong>Florante at Laura</strong><span>Francisco Balagtas · ISBN 978-971-0000-03 · Due: Nov 5, 2026</span></li>
+                                </ul>
+                            </td>
+                            <td><p class="empty">No returned books</p></td>
+                            <td><button type="button" class="danger" data-delete="member">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>Ana Reyes</td>
+                            <td>ana@example.com</td>
+                            <td>0919-345-6789</td>
+                            <td><p class="empty">No borrowed books</p></td>
+                            <td>
+                                <ul class="book-history">
+                                    <li><strong>Noli Me Tangere</strong><span>José Rizal · ISBN 978-971-0000-01 · Returned: Oct 18, 2026</span></li>
+                                    <li><strong>El Filibusterismo</strong><span>José Rizal · ISBN 978-971-0000-02 · Returned: Oct 21, 2026</span></li>
+                                </ul>
+                            </td>
+                            <td><button type="button" class="danger" data-delete="member">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="empty member-no-results" id="member-no-results" hidden>No members match your search.</p>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 CLARE LIBRARY — All Rights Reserved</footer>
+
+    <script>
+        const toggle   = document.querySelector('.nav-toggle');
+        const closeBtn = document.querySelector('.nav-close');
+        const nav      = document.querySelector('header nav');
+        const overlay  = document.querySelector('.nav-overlay');
+        const navLinks = nav.querySelectorAll('a');
+
+        function updateActiveLink() {
+            const currentHash = window.location.hash || '#members';
+            navLinks.forEach(link => {
+                const isActive = link.hash === currentHash;
+                link.classList.toggle('active', isActive);
+                if (isActive) link.setAttribute('aria-current', 'page');
+                else link.removeAttribute('aria-current');
+            });
+        }
+        updateActiveLink();
+        window.addEventListener('hashchange', updateActiveLink);
+
+        function openMenu() {
+            nav.classList.add('open');
+            overlay.classList.add('show');
+            toggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            nav.classList.remove('open');
+            overlay.classList.remove('show');
+            toggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        toggle.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        overlay.addEventListener('click', closeMenu);
+        navLinks.forEach(link => link.addEventListener('click', closeMenu));
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+        window.addEventListener('resize', () => { if (window.innerWidth > 480) closeMenu(); });
+    </script>
+
+
+    <script>
+        const memberRows = document.getElementById('member-rows');
+        const memberCount = document.getElementById('member-count');
+        const notice = document.getElementById('notice');
+        const noResults = document.getElementById('member-no-results');
+        const search = document.getElementById('member-search');
+
+        function updateMemberCount() {
+            memberCount.textContent = memberRows.querySelectorAll('tr').length;
+        }
+
+        function filterMembers() {
+            const query = search.value.trim().toLocaleLowerCase();
+            const rows = Array.from(memberRows.querySelectorAll('tr'));
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const matches = row.textContent.toLocaleLowerCase().includes(query);
+                row.hidden = !matches;
+                if (matches) visibleCount += 1;
+            });
+            noResults.hidden = visibleCount > 0;
+        }
+
+        search.addEventListener('input', filterMembers);
+        document.addEventListener('click', function (event) {
+            const button = event.target.closest('[data-delete="member"]');
+            if (!button || !window.confirm('Delete this member?')) return;
+
+            button.closest('tr').remove();
+            updateMemberCount();
+            filterMembers();
+            notice.textContent = 'Member deleted.';
+            notice.hidden = false;
+        });
+    </script>
+</body>
+</html>

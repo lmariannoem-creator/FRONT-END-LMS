@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLARE LIBRARY</title>
+    <link rel="stylesheet" href="stylepolicies.css">
+</head>
+<body>
+    <header>
+    <div class="logo">
+        <img src="img/clarelibrarylogo-removebg-preview.png" alt="Clare Library Logo">
+    </div>
+    <div class="header-text">
+        <h1>CLARE LIBRARY</h1>
+        <h4>Cataloging Library Assets, Records, and Entries</h4>
+    </div>
+    <div>
+        <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar-nav">☰</button>
+        <nav id="sidebar-nav" aria-label="Main Navigation">
+            <button class="nav-close" aria-label="Close menu">✕</button>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="books.html">Books</a></li>
+                <li><a href="#policies">Policies</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+                <li><a href="login.html">Log out</a></li>
+                <li class="profile-item">
+                    <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span id="user-name">User</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div class="nav-overlay"></div>
+
+<div class="policies" id="policies" aria-labelledby="policies-title">
+    <h2 id="policies-title">The Clare Library System — Policies and Guidelines</h2>
+    <div class="policy-grid">
+        <section class="policy-card">
+            <h3>1. User Account Policy</h3>
+            <ul>
+                <li>Every user must register or log in using valid account credentials.</li>
+                <li>Each user must provide accurate information during registration.</li>
+                <li>Users must keep their login credentials confidential.</li>
+                <li>Users must not access another person's account without permission.</li>
+                <li>The administrator has the authority to manage user accounts and permissions.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>2. Book Borrowing Policy</h3>
+            <ul>
+                <li>Users must have an active library account to borrow books.</li>
+                <li>Each user may borrow a maximum of three books at a time.</li>
+                <li>Books must be available in the system before they can be borrowed.</li>
+                <li>Users must follow the assigned borrowing period.</li>
+                <li>Reference books and other restricted materials may only be used inside the library.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>3. Book Return and Renewal Policy</h3>
+            <ul>
+                <li>Borrowed books must be returned on or before their assigned due dates.</li>
+                <li>Users may request a renewal if no other user has reserved the book.</li>
+                <li>The system must update the book's availability after a successful return.</li>
+                <li>Users must report lost or damaged books to the librarian.</li>
+                <li>Overdue books may result in borrowing restrictions, depending on library rules.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>4. Book Reservation Policy</h3>
+            <ul>
+                <li>Users may reserve books that are currently borrowed by other users.</li>
+                <li>Reservations must be recorded in the system.</li>
+                <li>Users will be notified when their reserved books become available, if the notification feature is supported.</li>
+                <li>Reservations may expire if the user does not claim the book within the designated period.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>5. Book Management Policy</h3>
+            <ul>
+                <li>Only authorized administrators or librarians may add, edit, or remove book records.</li>
+                <li>Each book record must contain essential information, such as its title, author, ISBN or book ID, category, and availability status.</li>
+                <li>Duplicate records should be avoided.</li>
+                <li>Book information must be updated whenever changes occur.</li>
+                <li>Books that are lost, damaged, or withdrawn must have their status updated accordingly.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>6. User Conduct Policy</h3>
+            <ul>
+                <li>Users must handle library materials with care.</li>
+                <li>Users must not intentionally damage, alter, or remove library materials without authorization.</li>
+                <li>Users must respect other library users and maintain a suitable environment for reading and studying.</li>
+                <li>Misuse of the system may result in temporary account suspension or other appropriate action.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>7. Data Privacy and Security Policy</h3>
+            <ul>
+                <li>The system must protect users' personal information and borrowing records.</li>
+                <li>Passwords must be stored securely using appropriate password hashing.</li>
+                <li>Access to administrative functions must be restricted to authorized personnel.</li>
+                <li>User information must not be disclosed to unauthorized individuals.</li>
+                <li>The system must maintain backups to help prevent data loss.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>8. System Maintenance Policy</h3>
+            <ul>
+                <li>The system must be maintained regularly to ensure proper functionality.</li>
+                <li>Database records should be backed up periodically.</li>
+                <li>Technical errors and security issues must be reported to the system administrator.</li>
+                <li>System updates should be tested before deployment.</li>
+                <li>Unauthorized modifications to the system or database are prohibited.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>9. Penalty and Violation Policy</h3>
+            <ul>
+                <li>Overdue books may be subject to fines or borrowing restrictions, according to the library's approved rules.</li>
+                <li>Lost or damaged books may require replacement or compensation.</li>
+                <li>Repeated violations may result in temporary suspension of borrowing privileges.</li>
+                <li>All penalties must be applied consistently and communicated clearly to users.</li>
+            </ul>
+        </section>
+
+        <section class="policy-card">
+            <h3>10. Administrator Policy</h3>
+            <ul>
+                <li>The administrator is responsible for maintaining accurate book and user records.</li>
+                <li>The administrator may monitor borrowing, returning, and reservation transactions for legitimate library purposes.</li>
+                <li>Only authorized personnel may generate reports or modify important system settings.</li>
+                <li>Administrative activities should be recorded when audit logging is available.</li>
+            </ul>
+        </section>
+    </div>
+</div>
+
+  <script>
+    const toggle  = document.querySelector('.nav-toggle');
+    const closeBtn = document.querySelector('.nav-close');
+    const nav     = document.querySelector('header nav');
+    const overlay = document.querySelector('.nav-overlay');
+    const navLinks = nav.querySelectorAll('a');
+
+    function updateActiveLink() {
+        const currentHash = window.location.hash || '#policies';
+
+        navLinks.forEach(link => {
+            const isActive = link.hash === currentHash;
+            link.classList.toggle('active', isActive);
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    updateActiveLink();
+    window.addEventListener('hashchange', updateActiveLink);
+
+    function openMenu() {
+        nav.classList.add('open');
+        overlay.classList.add('show');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';   // stop page scrolling behind the menu
+    }
+
+    function closeMenu() {
+        nav.classList.remove('open');
+        overlay.classList.remove('show');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+
+    // close when a link is tapped
+    navLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+    // close with the Escape key
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMenu();
+    });
+
+    // if the window is resized to desktop size, reset everything
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 480) closeMenu();
+    });
+</script>
